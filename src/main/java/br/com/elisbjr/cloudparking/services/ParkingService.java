@@ -47,6 +47,7 @@ public class ParkingService {
 
         if(newParking == null)
             throw new FindNullException();
+
         newParking.setLicense(updateParking.getLicense());
         newParking.setState(updateParking.getState());
         newParking.setModel(updateParking.getModel());
