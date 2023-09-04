@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/parking")
 @Tag(name = "CloudParking", description = "APIs for integration CloudParking")
+@CrossOrigin(origins = "*")
 public class ParkingController {
     @Autowired
     private ParkingService service;
