@@ -20,26 +20,31 @@ public class ParkingController {
     private ParkingService service;
 
     @PostMapping(value = "/save")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Parking> save(@RequestBody Parking parking) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(parking));
     }
 
     @GetMapping(value = "bring-all")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<Parking>> findAll() {
         return ResponseEntity.ok().body(service.findAll());
     }
 
     @GetMapping(value = "/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Parking> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
     @PutMapping(value = "/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Parking> update(@PathVariable Long id, @RequestBody Parking updateParking) {
         return ResponseEntity.ok().body(service.updateParking(id, updateParking));
     }
 
     @DeleteMapping(value = "/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<Parking>> delete(@PathVariable Long id) {
         service.delete(id);
         return findAll();
@@ -47,6 +52,7 @@ public class ParkingController {
     }
 
     @PostMapping(value = "/checkout/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Parking> checkOut(@PathVariable Long id){
         return ResponseEntity.ok().body(service.checkOut(id));
     }
