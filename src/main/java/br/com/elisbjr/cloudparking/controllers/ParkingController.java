@@ -1,8 +1,8 @@
 package br.com.elisbjr.cloudparking.controllers;
 
 import br.com.elisbjr.cloudparking.entity.Parking;
+
 import br.com.elisbjr.cloudparking.services.ParkingService;
-import io.swagger.v3.oas.annotations.StringToClassMapItem;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/parking")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Tag(name = "CloudParking", description = "APIs for integration CloudParking")
 public class ParkingController {
     @Autowired
     private ParkingService service;
+
+
 
     @PostMapping(value = "/save")
     @CrossOrigin(origins = "*", allowedHeaders = "*")

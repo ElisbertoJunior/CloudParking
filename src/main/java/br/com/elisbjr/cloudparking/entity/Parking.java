@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Setter
 public class Parking {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,4 +24,5 @@ public class Parking {
     private LocalDateTime entryDate;
     private LocalDateTime exitDate;
     private Double bill;
+
 }
