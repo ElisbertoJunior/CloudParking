@@ -21,7 +21,6 @@ public class ParkingController {
     private ParkingService service;
 
 
-
     @PostMapping(value = "/save")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Parking> save(@RequestBody Parking parking) {
