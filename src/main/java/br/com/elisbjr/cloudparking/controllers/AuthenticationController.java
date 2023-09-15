@@ -2,6 +2,7 @@ package br.com.elisbjr.cloudparking.controllers;
 
 import br.com.elisbjr.cloudparking.entity.User;
 import br.com.elisbjr.cloudparking.repository.UserRepository;
+import br.com.elisbjr.cloudparking.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +24,17 @@ public class AuthenticationController {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid User user) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token =  tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/register")
