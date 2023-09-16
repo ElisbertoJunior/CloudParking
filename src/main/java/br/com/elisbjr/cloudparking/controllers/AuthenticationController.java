@@ -1,5 +1,6 @@
 package br.com.elisbjr.cloudparking.controllers;
 
+import br.com.elisbjr.cloudparking.domain.LoginResponseDTO;
 import br.com.elisbjr.cloudparking.entity.User;
 import br.com.elisbjr.cloudparking.repository.UserRepository;
 import br.com.elisbjr.cloudparking.security.TokenService;
@@ -28,13 +29,13 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid User user) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid User user) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
         var token =  tokenService.generateToken((User) auth.getPrincipal());
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok().body(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
